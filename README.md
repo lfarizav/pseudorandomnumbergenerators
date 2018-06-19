@@ -8,11 +8,21 @@ When running ./boxmuller or ./ziggurat, the program will generate 3 files called
 Math Kernel Library downloaded from https://software.intel.com/en-us/mkl.
 Math functions are inspired from https://github.com/miloyip/normaldist-benchmark.
 
-
+![Comparison between generators](comparison.png)
+ 
 # Prerequisites
 1. Intall the Math Kernel Library (MKL) from Intel: source l_mkl_2018.3.222/./install.sh
 2. Run the script compilervars: source /opt/intel/bin/./compilervars.sh intel64
-# Compilation Box-Muller
-gcc -o boxmuller boxmuller.c gaussdouble.c display.c -lm -mavx2 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
-# Compilation Ziggurat
-gcc -o ziggurat ziggurat.c gaussdouble.c display.c -lm -mavx2 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
+
+# Buil and Run Box-Muller
+1. gcc -o boxmuller boxmuller.c gaussdouble.c display.c -lm -mavx2 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
+2. ./boxmuller
+
+# Build and Run Ziggurat
+1. gcc -o ziggurat ziggurat.c gaussdouble.c display.c -lm -mavx2 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread
+2. ./ziggurat
+
+## References
+[1] G. E. P. Box and Mervin E. Muller, A Note on the Generation of Random Normal Deviates, The Annals of Mathematical Statistics (1958), Vol. 29, No. 2 pp. 610–611.
+
+[2] Marsaglia, George, and Wai Wan Tsang. "The ziggurat method for generating random variables." Journal of statistical software 5.8 (2000): 1-7.
