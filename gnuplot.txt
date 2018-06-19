@@ -1,0 +1,157 @@
+compile
+gcc -o main random.c gaussdouble.c display.c -lm -msse4.1
+gcc -o boxmuller boxmuller.c gaussdouble.c display.c -lm -mavx2 -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -----> Intel optimization
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_gaussdouble_uniformrandom.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_gaussdouble_UNI.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_ziggurat.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_ziggurat_SSE.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_boxmuller_SSE.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_boxmuller_AVX.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,20'
+set output 'histogram_ziggurat_AVX.eps'
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+set key off
+set border 3
+set yzeroaxis
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,15'
+set output 'histogram_ziggurat_comp.eps'
+set multiplot layout 1,3
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+unset ytics
+set key off
+set border 3
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+set ylaber notitle
+plot 'plot4.out' u (rounded($1)):(1) smooth frequency with boxes
+plot 'plot8.out' u (rounded($1)):(1) smooth frequency with boxes
+unset multiplot
+
+clear
+reset
+set terminal postscript eps enhanced color font 'Helvetica,15'
+set output 'histogram_boxmuller_comp.eps'
+set multiplot layout 1,3
+set xlabe "Standard deviation"
+set ylabel "Frequency of ocurrence"
+unset ytics
+set key off
+set border 3
+set boxwidth 0.05 absolute
+set style fill solid 1.0 noborder
+bin_width=0.1
+bin_number(x)=floor(x/bin_width)
+rounded(x)=bin_width*(bin_number(x) +0.5)
+plot 'plot.out' u (rounded($1)):(1) smooth frequency with boxes
+set ylaber notitle
+plot 'plot4.out' u (rounded($1)):(1) smooth frequency with boxes
+plot 'plot8.out' u (rounded($1)):(1) smooth frequency with boxes
+unset multiplot

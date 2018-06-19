@@ -1,0 +1,4 @@
+gaussdouble 		=>	1.90e-07
+ziggurat 		=>	1.37e-07
+sse2-gaussdouble	=>
+sse2-ziggurat		=>
